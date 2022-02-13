@@ -97,7 +97,8 @@ def filter_by_salary_range(jobs, salary):
     salary_int = salary
     salary_range_list = []
     for job_row in jobs_dict_list:
-        if (job_row["min_salary"] < job_row["max_salary"] and type(salary_int) is int):
+        if (job_row["min_salary"] < job_row["max_salary"] and
+                type(salary_int) is int):
             valid_values = matches_salary_range(job_row, salary_int)
             if(valid_values is True):
                 salary_range_list.append(job_row)
