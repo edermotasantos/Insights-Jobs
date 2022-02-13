@@ -78,11 +78,11 @@ def matches_salary_range(job, salary):
     if (type(job_dict["min_salary"]) is not int or
             type(job_dict["max_salary"]) is not int):
         raise ValueError(
-            "Job dictionary must contain the keys"
+            "Job dictionary must contain the keys "
             "min_salary and max_salary with valid values")
     if (job_dict["min_salary"] > job_dict["max_salary"]):
         raise ValueError(
-            "The value of the min_salary key"
+            "The value of the min_salary key "
             "cannot be greater than that of the max_salary key")
     if (type(salary_int) is not int):
         raise ValueError("The salary_int parameter must be a valid value")
@@ -93,18 +93,12 @@ def matches_salary_range(job, salary):
 
 
 def filter_by_salary_range(jobs, salary):
-    """Filters a list of jobs by salary range
-
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
-
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    return []
+    jobs_dict_list = jobs
+    salary_int = salary
+    salary_range_list = []
+    for job_row in jobs_dict_list:
+        if (job_row["min_salary"] < job_row["max_salary"] and type(salary_int) is int):
+            valid_values = matches_salary_range(job_row, salary_int)
+            if(valid_values is True):
+                salary_range_list.append(job_row)
+    return salary_range_list
