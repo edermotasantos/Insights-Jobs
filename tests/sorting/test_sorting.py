@@ -38,9 +38,13 @@ def test_sort_by_criteria():
         {"date_posted": "2020-01-01", "max_salary": 10, "min_salary": 100},
     ]
 
-    sort_by(jobs, "min_salary")
-    assert jobs == jobs_min
-    sort_by(jobs, "max_salary")
-    assert jobs == jobs_max
-    sort_by(jobs, "date_posted")
-    assert jobs == jobs_date_posted
+    salary_list = ["min_salary", "max_salary", "date_posted"]
+    jobs_dict = {
+        "min_salary": jobs_min,
+        "max_salary": jobs_max,
+        "date_posted": jobs_date_posted
+    }
+
+    for salary_option in salary_list:
+        sort_by(jobs, salary_option)
+        assert jobs == jobs_dict[salary_option]
